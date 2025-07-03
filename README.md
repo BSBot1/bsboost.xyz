@@ -1,1 +1,1 @@
-# bsboost.xyz
+# [goole.com](bsboost.xyz)
