@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,15 +8,18 @@
     html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* blockiert Scroll */
       font-family: Arial, sans-serif;
       scroll-behavior: smooth;
-      height: 100%;
     }
 
     .background {
       position: fixed;
       inset: 0;
-      background: url('https://i.postimg.cc/8PzRDd24/IMG-1586.jpg') center/cover no-repeat;
+      background: url('https://i.postimg.cc/8PzRDd24/IMG-1586.jpg') center center no-repeat;
+      background-size: cover;
       z-index: -2;
     }
 
@@ -33,6 +36,7 @@
       color: white;
       text-align: center;
       padding: 40px 20px;
+      background: transparent;
     }
 
     header h1 {
@@ -43,6 +47,7 @@
     header p {
       max-width: 600px;
       margin: 0 auto 20px;
+      line-height: 1.4;
     }
 
     .order-btn {
@@ -94,28 +99,27 @@
     }
 
     @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     section#pricing {
-      background: #111;
-      color: white;
+      background: transparent;
       padding: 60px 20px;
-      text-align: center;
+      margin-top: 20vh; /* sichtbar weiter oben */
+      color: white;
     }
 
     .pricing-box {
-      background: #222;
+      background: rgba(34,34,34,0.85);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 8px;
       max-width: 600px;
       margin: 20px auto;
       padding: 30px;
+      color: white;
+      position: relative;
+      top: -50px; /* weiter oben */
     }
 
     .pricing-button {
@@ -132,10 +136,11 @@
 <body>
   <div class="background"></div>
   <div class="overlay"></div>
+
   <header>
     <h1>Boost your Brawl Stars Account</h1>
     <p>Pay for ordered boosts from our Discord here on our website and have your order delivered in a matter of days or hours!</p>
-    <button class="order-btn" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Order Boost</button>
+    <button class="order-btn" id="orderButton">Order Boost</button>
     <hr>
     <div class="customers">
       Over 2.5 thousand satisfied customers, that ordered boosts with our website!
@@ -143,7 +148,6 @@
 
     <div class="carousel-container">
       <div class="carousel-track">
-        <!-- 2x Bilder für Endlosanimation -->
         <img src="https://i.postimg.cc/K8W9VcYZ/IMG-1595.png" alt="">
         <img src="https://i.postimg.cc/K8W9VcYZ/IMG-1595.png" alt="">
         <img src="https://i.postimg.cc/K8W9VcYZ/IMG-1595.png" alt="">
@@ -164,5 +168,14 @@
       <button class="pricing-button">Call page-visitors to action</button>
     </div>
   </section>
+
+  <script>
+    const button = document.getElementById('orderButton');
+    button.addEventListener('click', () => {
+      document.body.style.overflow = "auto"; // Scroll wieder aktivieren
+      document.body.style.height = "auto";
+      document.getElementById("pricing").scrollIntoView({behavior: "smooth"});
+    });
+  </script>
 </body>
 </html>
